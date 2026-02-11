@@ -39,16 +39,34 @@ h1,h2,h3{margin:6px 0 12px}
 
 <p class="small">
 TOOL MD5 AI là nền tảng hỗ trợ ghi nhận, thống kê và theo dõi dữ liệu MD5 theo thời gian,
-được xây dựng với định hướng minh bạch, ổn định và dễ sử dụng.
-Công cụ không can thiệp kết quả, không cam kết chắc thắng,
-mọi thông tin hiển thị chỉ mang tính tham khảo dữ liệu.
+được xây dựng với định hướng rõ ràng: <b>minh bạch dữ liệu – trải nghiệm ổn định – dễ tiếp cận cho người dùng</b>.
+Hệ thống tập trung vào việc tổng hợp và hiển thị thông tin một cách trực quan,
+giúp người dùng có thêm cơ sở tham khảo trong quá trình theo dõi và đánh giá dữ liệu.
 </p>
 
 <p class="small">
-Hệ thống tập trung vào việc lưu trữ lịch sử, đối chiếu kết quả,
-giúp người dùng có thêm góc nhìn tổng quan khi theo dõi dữ liệu.
-Giao diện được tối ưu cho thiết bị di động,
-đảm bảo thao tác nhanh, rõ ràng và liền mạch.
+Công cụ không can thiệp kết quả, không chỉnh sửa dữ liệu đầu vào,
+không đưa ra bất kỳ cam kết chắc chắn nào.
+Mọi kết quả phân tích đều mang tính thống kê và tham khảo,
+nhằm hỗ trợ người dùng có thêm góc nhìn tổng quan,
+từ đó tự đưa ra quyết định phù hợp với nhu cầu cá nhân.
+</p>
+
+<p class="small">
+TOOL MD5 AI được thiết kế theo hướng đơn giản nhưng chặt chẽ,
+lưu trữ lịch sử rõ ràng, hiển thị tỷ lệ thắng – thua minh bạch theo thời gian,
+giúp người dùng dễ dàng theo dõi hiệu quả sử dụng.
+Giao diện tối ưu cho thiết bị di động,
+hoạt động mượt mà, không gây rối mắt và không làm gián đoạn trải nghiệm.
+</p>
+
+<p class="small">
+Chúng tôi hướng đến việc xây dựng một công cụ có giá trị sử dụng lâu dài,
+phù hợp cho những người cần theo dõi dữ liệu MD5 một cách có hệ thống,
+có kiểm soát và có lịch sử đối chiếu rõ ràng.
+Uy tín được đặt lên hàng đầu,
+chất lượng là nền tảng phát triển,
+và sự thông minh trong thiết kế là yếu tố cốt lõi.
 </p>
 
 <div class="center">
@@ -122,10 +140,9 @@ Tool giúp ghi nhận, thống kê và theo dõi dữ liệu MD5 theo thời gia
 </div>
 <div class="list" id="list"></div>
 <button class="btn out" id="exp" style="margin-top:10px">Xuất file lịch sử</button>
-<button class="btn out" id="del" style="margin-top:10px">🗑 Xoá toàn bộ MD5</button>
 </div>
 
-<!-- GAME -->
+<!-- GAME (HIỆN TẠI CHỖ) -->
 <div id="g" class="card hidden">
 <input id="url" class="input" placeholder="Nhập link game">
 <button class="btn" id="open" style="margin-top:10px">Mở game</button>
@@ -152,11 +169,9 @@ allowfullscreen></iframe>
 (function(){
 const _=s=>document.querySelector(s),L=localStorage;
 const K='__k',H='__h';let C=null;
-
 const S=x=>{['i','k','b','t'].forEach(e=>_('#'+e).classList.add('hidden'));_('#'+x).classList.remove('hidden')};
 const LG=()=>L.getItem(K)==='1';
 const SY=()=>LG()?(S('t'),_('#out').classList.remove('hidden')):(S('i'),_('#out').classList.add('hidden'));
-
 const SV=o=>{let a=JSON.parse(L.getItem(H)||'[]');a.unshift(o);L.setItem(H,JSON.stringify(a))};
 const DR=()=>{let a=JSON.parse(L.getItem(H)||'[]'),w=0,l=0;_('#list').innerHTML='';
 a.forEach(x=>{x.kq==='thắng'?w++:l++;let d=document.createElement('div');
@@ -166,13 +181,21 @@ _('#w').textContent=w;_('#l').textContent=l};
 _('#go').onclick=()=>S('k');
 _('#buy').onclick=()=>S('b');
 _('#back').onclick=()=>S('k');
-
 _('#act').onclick=()=>{
-  let v=_('#key').value.toLowerCase().replace(/[^a-z0-9]/g,'')
-    .split('').map(x=>x.charCodeAt(0)).join('-');
+  let v=_('#key').value
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g,'')
+    .split('')
+    .map(x=>x.charCodeAt(0))
+    .join('-');
+
+  // key gốc: toolmd5 (đã mã hóa, không lộ chữ)
   if(v===['116','111','111','108','109','100','53'].join('-')){
-    L.setItem(K,'1');SY();
-  }else _('#msg').textContent='❌ Vui lòng mua key để sử dụng tool';
+    L.setItem(K,'1');
+    SY();
+  }else{
+    _('#msg').textContent='❌ Vui lòng mua key để sử dụng tool';
+  }
 };
 
 _('#out').onclick=()=>{L.removeItem(K);SY()};
@@ -202,11 +225,6 @@ a.forEach(x=>c+=`${x.time},${x.tool},${x.real},${x.kq}\n`);
 let b=new Blob([c],{type:'text/csv'}),u=URL.createObjectURL(b);
 let a2=document.createElement('a');a2.href=u;a2.download='history.csv';a2.click();URL.revokeObjectURL(u)};
 
-_('#del').onclick=()=>{
-  if(!confirm('Bạn có chắc muốn xoá toàn bộ lịch sử MD5 không?'))return;
-  L.removeItem(H);DR();alert('Đã xoá toàn bộ lịch sử MD5');
-};
-
 document.querySelectorAll('.top div').forEach(b=>b.onclick=()=>{
 document.querySelectorAll('.top div').forEach(x=>x.classList.remove('on'));
 b.classList.add('on');['m','h','g'].forEach(x=>_('#'+x).classList.add('hidden'));
@@ -216,5 +234,4 @@ SY();DR();
 })();
 </script>
 </body>
-  </html>
-  
+</html>
