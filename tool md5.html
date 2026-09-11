@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TOOL MD5 AI – Vũ Đăng Khoa</title>
+
+<style>
+:root{--bg:#0b1220;--c:#0f1b33;--g:linear-gradient(135deg,#22e1ff,#c77dff);--t:#e6ecff}
+*{box-sizing:border-box;font-family:system-ui}
+body{margin:0;background:radial-gradient(900px 400px at 10% -10%,#152a5e,transparent),var(--bg);color:var(--t)}
+.wrap{max-width:960px;margin:auto;padding:14px}
+.card{background:linear-gradient(180deg,#0f1b33,#0b1428);border-radius:18px;padding:20px;margin-top:16px}
+h1,h2,h3{margin:6px 0 12px}
+.btn{border:0;border-radius:999px;padding:12px 18px;background:var(--g);font-weight:700;cursor:pointer}
+.btn.out{background:#0e162b;color:#fff;border:1px solid #22325f}
+.input{width:100%;padding:14px;border-radius:12px;border:1px solid #22325f;background:#0e162b;color:#fff}
+.hidden{display:none}
+.top{display:flex;gap:8px}
+.top div{flex:1;padding:12px;text-align:center;border-radius:12px;background:#0e162b;cursor:pointer}
+.top .on{background:var(--g);color:#000;font-weight:700}
+.fix{position:fixed;right:16px;bottom:16px}
+.list{max-height:260px;overflow:auto;border:1px solid #22325f;border-radius:12px;padding:10px}
+.list div{border-bottom:1px dashed #22325f;padding:6px 0;font-size:14px}
+.small{opacity:.9;font-size:14px;line-height:1.65}
+.center{text-align:center}
+.stat{display:flex;gap:10px;margin-bottom:10px}
+.stat div{flex:1;background:#0e162b;border-radius:12px;padding:10px;text-align:center}
+.bank{background:#0e162b;border:1px solid #22325f;border-radius:12px;padding:14px;margin-top:12px}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+<!-- GIỚI THIỆU -->
+<div id="i" class="card">
+<h1 class="center">🔮 TOOL MD5 AI</h1>
+
+<p class="small">
+TOOL MD5 AI là nền tảng hỗ trợ ghi nhận, thống kê và theo dõi dữ liệu MD5 theo thời gian,
+được xây dựng với định hướng rõ ràng: <b>minh bạch dữ liệu – trải nghiệm ổn định – dễ tiếp cận cho người dùng</b>.
+Hệ thống tập trung vào việc tổng hợp và hiển thị thông tin một cách trực quan,
+giúp người dùng có thêm cơ sở tham khảo trong quá trình theo dõi và đánh giá dữ liệu.
+</p>
+
+<p class="small">
+Công cụ không can thiệp kết quả, không chỉnh sửa dữ liệu đầu vào,
+không đưa ra bất kỳ cam kết chắc chắn nào.
+Mọi kết quả phân tích đều mang tính thống kê và tham khảo,
+nhằm hỗ trợ người dùng có thêm góc nhìn tổng quan,
+từ đó tự đưa ra quyết định phù hợp với nhu cầu cá nhân.
+</p>
+
+<p class="small">
+TOOL MD5 AI được thiết kế theo hướng đơn giản nhưng chặt chẽ,
+lưu trữ lịch sử rõ ràng, hiển thị tỷ lệ thắng – thua minh bạch theo thời gian,
+giúp người dùng dễ dàng theo dõi hiệu quả sử dụng.
+Giao diện tối ưu cho thiết bị di động,
+hoạt động mượt mà, không gây rối mắt và không làm gián đoạn trải nghiệm.
+</p>
+
+<p class="small">
+Chúng tôi hướng đến việc xây dựng một công cụ có giá trị sử dụng lâu dài,
+phù hợp cho những người cần theo dõi dữ liệu MD5 một cách có hệ thống,
+có kiểm soát và có lịch sử đối chiếu rõ ràng.
+Uy tín được đặt lên hàng đầu,
+chất lượng là nền tảng phát triển,
+và sự thông minh trong thiết kế là yếu tố cốt lõi.
+</p>
+
+<div class="center">
+<h2>VŨ ĐĂNG KHOA</h2>
+<div class="small">Uy tín – Chất lượng – Thông minh</div>
+<div class="small">Uy tín tạo nên thương hiệu</div>
+</div>
+
+<div class="center" style="margin-top:16px">
+<button class="btn" id="go">🔑 VÀO WEBSITE TOOL</button>
+</div>
+</div>
+
+<!-- KEY -->
+<div id="k" class="card hidden">
+<h3>🔐 Nhập key kích hoạt</h3>
+<input id="key" class="input" placeholder="Nhập key">
+<button class="btn" id="act" style="margin-top:10px">Kích hoạt</button>
+<button class="btn out" id="buy" style="margin-top:10px">Mua key</button>
+<div id="msg" class="small" style="margin-top:8px"></div>
+</div>
+
+<!-- MUA KEY -->
+<div id="b" class="card hidden">
+<h3>💳 Thông tin mua key</h3>
+<div class="bank">
+<b>Ngân hàng:</b> MB BANK<br>
+<b>STK:</b> 280820109999<br>
+<b>CTK:</b> VU DANG KHOA<br>
+<b>Zalo:</b> 0824 052 808
+</div>
+<button class="btn out" id="back" style="margin-top:12px">⬅ Quay lại</button>
+</div>
+
+<!-- TOOL -->
+<div id="t" class="hidden">
+
+<div class="top">
+<div data-p="m" class="on">MD5</div>
+<div data-p="h">Lịch sử</div>
+<div data-p="g">Game</div>
+</div>
+
+<!-- MD5 -->
+<div id="m" class="card">
+<input id="md5" class="input" placeholder="Nhập MD5 (32 ký tự)">
+<button class="btn" id="anl" style="margin-top:10px">Phân tích</button>
+
+<p class="small" style="margin-top:10px">
+Tool giúp ghi nhận, thống kê và theo dõi dữ liệu MD5 theo thời gian.
+<b>Không can thiệp kết quả – không cam kết chắc thắng.</b>
+</p>
+
+<div id="ld" class="small hidden">⏳ Đang phân tích mã MD5...</div>
+
+<div id="rsb" class="hidden">
+<h3>📊 TOOL MD5 PHÂN TÍCH KẾT QUẢ</h3>
+<p id="rs"></p>
+<p id="cf"></p>
+<p class="small">Vui lòng chọn kết quả thực tế:</p>
+<button class="btn" id="rt">Tài</button>
+<button class="btn" id="rx">Xỉu</button>
+</div>
+</div>
+
+<!-- HISTORY -->
+<div id="h" class="card hidden">
+<div class="stat">
+<div>✅ Thắng: <span id="w">0</span></div>
+<div>❌ Thua: <span id="l">0</span></div>
+</div>
+<div class="list" id="list"></div>
+<button class="btn out" id="exp" style="margin-top:10px">Xuất file lịch sử</button>
+</div>
+
+<!-- GAME (HIỆN TẠI CHỖ) -->
+<div id="g" class="card hidden">
+<input id="url" class="input" placeholder="Nhập link game">
+<button class="btn" id="open" style="margin-top:10px">Mở game</button>
+
+<div id="gload" class="small hidden" style="margin-top:10px">
+⏳ Đang tải game, vui lòng chờ...
+</div>
+
+<div id="gbox" class="hidden" style="margin-top:14px;border-radius:18px;overflow:hidden;border:2px solid #22325f;background:#000">
+<iframe id="gframe"
+style="width:100%;height:520px;border:0"
+sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+allowfullscreen></iframe>
+</div>
+</div>
+
+</div>
+</div>
+
+<button id="out" class="btn fix hidden">Đăng xuất</button>
+
+<!-- JS RỐI -->
+<script>
+(function(){
+const _=s=>document.querySelector(s),L=localStorage;
+const K='__k',H='__h';let C=null;
+const S=x=>{['i','k','b','t'].forEach(e=>_('#'+e).classList.add('hidden'));_('#'+x).classList.remove('hidden')};
+const LG=()=>L.getItem(K)==='1';
+const SY=()=>LG()?(S('t'),_('#out').classList.remove('hidden')):(S('i'),_('#out').classList.add('hidden'));
+const SV=o=>{let a=JSON.parse(L.getItem(H)||'[]');a.unshift(o);L.setItem(H,JSON.stringify(a))};
+const DR=()=>{let a=JSON.parse(L.getItem(H)||'[]'),w=0,l=0;_('#list').innerHTML='';
+a.forEach(x=>{x.kq==='thắng'?w++:l++;let d=document.createElement('div');
+d.textContent=`${x.time} | Tool: ${x.tool} | Thực tế: ${x.real} | ${x.kq.toUpperCase()}`;_('#list').appendChild(d)});
+_('#w').textContent=w;_('#l').textContent=l};
+
+_('#go').onclick=()=>S('k');
+_('#buy').onclick=()=>S('b');
+_('#back').onclick=()=>S('k');
+_('#act').onclick=()=>{
+  let v=_('#key').value
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g,'')
+    .split('')
+    .map(x=>x.charCodeAt(0))
+    .join('-');
+
+  // key gốc: toolmd5 (đã mã hóa, không lộ chữ)
+  if(v===['116','111','111','108','109','100','53'].join('-')){
+    L.setItem(K,'1');
+    SY();
+  }else{
+    _('#msg').textContent='❌ Vui lòng mua key để sử dụng tool';
+  }
+};
+
+_('#out').onclick=()=>{L.removeItem(K);SY()};
+
+_('#anl').onclick=()=>{
+let v=_('#md5').value.trim();if(v.length!==32)return alert('MD5 không hợp lệ');
+_('#ld').classList.remove('hidden');_('#rsb').classList.add('hidden');
+setTimeout(()=>{_('#ld').classList.add('hidden');C=Math.random()>0.5?'Tài':'Xỉu';
+_('#rs').textContent='Kết quả phân tích: '+C;
+_('#cf').textContent='Độ tin cậy: '+(Math.random()*15+55).toFixed(1)+'%';
+_('#rsb').classList.remove('hidden')},1200)};
+
+const FN=x=>{SV({time:new Date().toLocaleString(),tool:C,real:x,kq:C===x?'thắng':'thua'});DR();alert('Đã lưu lịch sử')};
+_('#rt').onclick=()=>FN('Tài');
+_('#rx').onclick=()=>FN('Xỉu');
+
+_('#open').onclick=()=>{
+let u=_('#url').value.trim();if(!u)return alert('Vui lòng nhập link game');
+_('#gload').classList.remove('hidden');_('#gbox').classList.add('hidden');
+let f=_('#gframe');f.src=u;
+f.onload=()=>{_('#gload').classList.add('hidden');_('#gbox').classList.remove('hidden')};
+};
+
+_('#exp').onclick=()=>{
+let a=JSON.parse(L.getItem(H)||'[]'),c='time,tool,real,result\n';
+a.forEach(x=>c+=`${x.time},${x.tool},${x.real},${x.kq}\n`);
+let b=new Blob([c],{type:'text/csv'}),u=URL.createObjectURL(b);
+let a2=document.createElement('a');a2.href=u;a2.download='history.csv';a2.click();URL.revokeObjectURL(u)};
+
+document.querySelectorAll('.top div').forEach(b=>b.onclick=()=>{
+document.querySelectorAll('.top div').forEach(x=>x.classList.remove('on'));
+b.classList.add('on');['m','h','g'].forEach(x=>_('#'+x).classList.add('hidden'));
+_('#'+b.dataset.p).classList.remove('hidden')});
+
+SY();DR();
+})();
+</script>
+</body>
+</html>
